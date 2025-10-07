@@ -1,14 +1,12 @@
-//your JS code here. If required.
 const container = document.getElementById('container');
 const SQUARES = 800;
 
-// Create 800 boxes dynamically
 for (let i = 0; i < SQUARES; i++) {
   const square = document.createElement('div');
   square.classList.add('square');
 
   square.addEventListener('mouseover', () => setColor(square));
-  square.addEventListener('mouseleave', () => removeColor(square));
+  square.addEventListener('mouseout', () => removeColor(square));
 
   container.appendChild(square);
 }
@@ -20,13 +18,20 @@ function setColor(element) {
 }
 
 function removeColor(element) {
-  setTimeout(() => {
-    element.style.background = '#1d1d1d';
-    element.style.boxShadow = '0 0 2px #000';
-  }, 1000);
+  // Immediately set back; CSS transition handles smooth fade
+  element.style.background = '#1d1d1d';
+  element.style.boxShadow = '0 0 2px #000';
 }
 
 function randomColor() {
-  const colors = ['#e74c3c', '#8e44ad', '#3498db', '#e67e22', '#2ecc71', '#f1c40f', '#1abc9c', '#9b59b6'];
-  return colors[Math.floor(Math.random() * colors.length)];
-}
+  const colors = [
+    '#e74c3c',
+    '#8e44ad',
+    '#3498db',
+    '#e67e22',
+    '#2ecc71',
+    '#f1c40f',
+    '#1abc9c',
+    '#9b59b6'
+  ];
+  return colors[Math.floor(Math.random() * colors.length)*]()

@@ -16,10 +16,7 @@ body {
 }
 
 .square {
-  width: 20px;
-  height: 20px;
-  background-color: #1d1d1d;
+  background-color: rgb(29, 29, 29); /* this exact shade */
   box-shadow: 0 0 2px #000;
   transition: background-color 1s ease, box-shadow 1s ease;
-  border-radius: 3px;
 }
