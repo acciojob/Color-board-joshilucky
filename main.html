@@ -1,12 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Board</title>
+  <style>
+    body {
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(40, 20px);
+      grid-template-rows: repeat(20, 20px);
+      gap: 2px;
+    }
+
+    .square {
+      width: 20px;
+      height: 20px;
+      background-color: rgb(29, 29, 29);
+      box-shadow: 0 0 2px #000;
+      border-radius: 3px;
+      transition: background-color 1s ease, box-shadow 1s ease;
+    }
+  </style>
 </head>
+
 <body>
-  <!-- Color Board Container -->
   <div class="container" id="container"></div>
 
-  <script type="text/javascript" src="./script.js"></script>
+  <script>
+    const container = document.getElementById('container');
+    const SQUARES = 800;
+
+    for (let i = 0; i < SQUARES; i++) {
+      const square = document.createElement('div');
+      square.classList.add('square');
+
+      square.addEventListener('mouseover', () => setColor(square));
+      square.addEventListener('mouseout', () => removeColor(square));
+
+      container.appendChild(square);
+    }
+
+    function setColor(element) {
+      const color = randomColor();
+      element.style.background = color;
+      element.style.boxShadow = `0 0 10px ${color}, 0 0 40px ${color}`;
+    }
+
+    function removeColor(element) {
+      element.style.background = 'rgb(29, 29, 29)';
+      element.style.boxShadow = '0 0 2px #000';
+    }
+
+    function randomColor() {
+      const colors = [
+        '#e74c3c',
+        '#8e44ad',
+        '#3498db',
+        '#e67e22',
+        '#2ecc71',
+        '#f1c40f',
+        '#1abc9c',
+        '#9b59b6'
+      ];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
 </body>
 </html>
